@@ -1,8 +1,12 @@
 <script setup>
-    import { onMounted } from 'vue'
+    import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
     import { useSmoothAnchorScroll } from '@/Composables/useSmoothAnchorScroll';
     import SkillReactionNetwork from "@/Shared/Components/SkillReactionNetwork.vue";
     import SkillReactionIcons from "@/Shared/Components/SkillReactionIcons.vue";
+
+    defineProps({
+        component: String
+    });
 
     const skills = [
         { key: "laravel", src: "/images/icons/laravel.svg" },
@@ -41,21 +45,44 @@
 
     const { onAnchorClick, scrollToHash } = useSmoothAnchorScroll(150);
 
-    defineProps({
-        component: String
-    });
+    const open = ref(false)
+
+    const close = () => (open.value = false)
+
+    const onKeydown = (e) => {
+        if (e.key === 'Escape') close()
+    }
+
+    const onClickOutside = (e) => {
+        if (!open.value) return
+
+        const nav = e.target.closest('nav')
+        if (!nav) close()
+    }
 
     onMounted(() => {
         if (window.location.hash) {
             setTimeout(() => scrollToHash(window.location.hash), 0);
         }
+
+        window.addEventListener('keydown', onKeydown)
+        document.addEventListener('click', onClickOutside)
     }); 
+
+    onBeforeUnmount(() => {
+        window.removeEventListener('keydown', onKeydown)
+        document.removeEventListener('click', onClickOutside)
+    })
+
+    watch(open, (val) => {
+        document.body.style.overflow = val ? 'hidden' : ''
+    })
 </script>
 
 <template>
     <div @click="onAnchorClick">
         <!-- Navigation -->
-        <nav class="sticky top-0 z-50 px-4 py-4 md:px-20">
+        <!-- <nav class="sticky top-0 z-50 px-4 py-4 md:px-20">
             <div class="max-w-7xl mx-auto flex items-center justify-between bg-white dark:bg-card-bg border-4 border-black dark:border-white rounded-xl px-6 py-3 shadow-comic dark:shadow-comic-red">
                 <div class="flex items-center gap-3">
                     <div class="bg-primary p-2 border-2 border-black rounded-lg transform -rotate-3">
@@ -74,6 +101,72 @@
                     </button>
                 </div>
             </div>
+        </nav> -->
+        <nav class="sticky top-0 z-50 px-4 py-4 sm:px-6 md:px-20">
+            <div
+                class="max-w-7xl mx-auto flex items-center justify-between bg-white dark:bg-card-bg border-4 border-black dark:border-white rounded-xl px-4 sm:px-6 py-3 shadow-comic dark:shadow-comic-red"
+                >
+                <!-- Brand -->
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="bg-primary p-2 border-2 border-black rounded-lg transform -rotate-3 shrink-0">
+                        <span class="material-symbols-outlined text-white font-bold">terminal</span>
+                    </div>
+                    <h1 class="font-black tracking-tighter italic text-lg sm:text-xl md:text-2xl">
+                        JAYVEE_INFINITY
+                    </h1>
+                </div>
+
+                <!-- Desktop -->
+                <div class="hidden lg:flex items-center gap-6 lg:gap-8 font-bold uppercase text-sm">
+                    <a class="hover:text-primary transition-colors" href="#hero">Origins</a>
+                    <a class="hover:text-primary transition-colors" href="#projects">Panels</a>
+                    <a class="hover:text-primary transition-colors" href="#superpowers">Powers</a>
+                    <a class="hover:text-primary transition-colors" href="#stats">Intel</a>
+                    <a class="hover:text-primary transition-colors" href="#skills">Skill Reactor</a>
+                    <button
+                        class="bg-primary text-white border-3 border-black px-5 lg:px-6 py-2 rounded-lg shadow-comic hover:shadow-comic-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
+                    >
+                        HIRE ME!
+                    </button>
+                </div>
+
+                <!-- Mobile button -->
+                <button
+                    class="lg:hidden inline-flex items-center justify-center border-2 border-black rounded-lg px-3 py-2"
+                    aria-label="Open menu"
+                    :aria-expanded="open.toString()"
+                    @click="open = !open"
+                >
+                    <span class="material-symbols-outlined">{{ open ? 'close' : 'menu' }}</span>
+                </button>
+            </div>
+
+            <!-- Mobile dropdown -->
+            <transition
+                enter-active-class="transition duration-150 ease-out"
+                enter-from-class="opacity-0 -translate-y-2"
+                enter-to-class="opacity-100 translate-y-0"
+                leave-active-class="transition duration-120 ease-in"
+                leave-from-class="opacity-100 translate-y-0"
+                leave-to-class="opacity-0 -translate-y-2"
+                >
+                <div
+                    v-if="open"
+                    class="lg:hidden max-w-7xl mx-auto mt-2 bg-white dark:bg-card-bg border-4 border-black dark:border-white rounded-xl shadow-comic dark:shadow-comic-red overflow-hidden"
+                >
+                    <div class="flex flex-col p-4 gap-3 font-bold uppercase text-sm">
+                    <a class="hover:text-primary transition-colors" href="#hero" @click="close()">Origins</a>
+                    <a class="hover:text-primary transition-colors" href="#projects" @click="close()">Panels</a>
+                    <a class="hover:text-primary transition-colors" href="#superpowers" @click="close()">Powers</a>
+                    <a class="hover:text-primary transition-colors" href="#stats" @click="close()">Intel</a>
+                    <a class="hover:text-primary transition-colors" href="#skills" @click="close()">Skill Reactor</a>
+
+                    <button class="mt-2 bg-primary text-white border-3 border-black px-6 py-2 rounded-lg shadow-comic">
+                        HIRE ME!
+                    </button>
+                    </div>
+                </div>
+            </transition>
         </nav>
         <main class="max-w-7xl mx-auto px-4 py-12 md:px-20">
             <!-- Hero Section -->
@@ -368,7 +461,7 @@
                         <div class="space-y-4">
                             <div class="flex items-center gap-4 bg-white border-3 border-black p-3 rounded-xl transform -rotate-1">
                                 <span class="material-symbols-outlined text-primary font-bold">mail</span>
-                                <span class="font-black italic text-black">johnvincent.bonza@gmail.com</span>
+                                <span class="font-black italic text-black truncate">johnvincent.bonza@gmail.com</span>
                             </div>
                             <div class="flex items-center gap-4 bg-white border-3 border-black p-3 rounded-xl transform rotate-1">
                                 <span class="material-symbols-outlined text-primary font-bold">location_on</span>
