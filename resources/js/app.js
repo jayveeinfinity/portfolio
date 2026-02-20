@@ -4,8 +4,8 @@ import { createApp, h } from 'vue'
 import { createInertiaApp, Head, Link } from '@inertiajs/vue3'
 import { ZiggyVue } from 'ziggy-js';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
-const appTagline = import.meta.env.VITE_APP_TAGLINE || '';
+const appName = import.meta.env.VITE_APP_NAME || '';
+const appTagline = import.meta.env.VITE_APP_TAGLINE || 'Your Friendly Neighborhood Full-Stack Hero.';
 
 createInertiaApp({
     defaults: {

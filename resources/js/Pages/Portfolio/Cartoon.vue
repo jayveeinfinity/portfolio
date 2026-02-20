@@ -80,7 +80,7 @@
             <section class="flex flex-col lg:flex-row gap-12 items-center mb-32" id="hero">
                 <div class="w-full lg:w-1/2 flex flex-col gap-6">
                     <div class="inline-block self-start bg-accent-yellow text-black font-black px-4 py-1 border-2 border-black rounded transform -rotate-2 mb-2">
-                        FULL-STACK SOFTWARE AVENGER
+                        FULL-STACK SOFTWARE HERO
                     </div>
                     <h1 class="text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter uppercase italic drop-shadow-[4px_4px_0px_rgba(212,17,17,1)]">
                         I BUILD STUFF <br/> <span class="text-primary">THAT WORKS!</span>
