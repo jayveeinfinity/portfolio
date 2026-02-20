@@ -132,7 +132,7 @@
 
                 <!-- Mobile button -->
                 <button
-                    class="lg:hidden inline-flex items-center justify-center border-2 border-black rounded-lg px-3 py-2"
+                    class="lg:hidden inline-flex items-center justify-center border-2 border-black rounded-lg px-3 py-2 shadow-comic hover:shadow-comic-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-primary"
                     aria-label="Open menu"
                     :aria-expanded="open.toString()"
                     @click="open = !open"
