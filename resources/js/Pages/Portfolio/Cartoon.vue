@@ -121,14 +121,14 @@
                     </span>
                     MY SUPERPOWERS
                 </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Power 1 -->
                     <div class="bg-white dark:bg-card-bg border-4 border-black p-6 rounded-2xl shadow-comic transition-transform hover:-translate-y-2 group">
                         <div class="w-16 h-16 bg-blue-400 border-4 border-black rounded-xl mb-4 flex items-center justify-center transform -rotate-6 group-hover:rotate-0 transition-transform">
                             <span class="material-symbols-outlined text-black text-4xl font-bold">auto_fix_high</span>
                         </div>
                         <h3 class="text-2xl font-black italic mb-2">Frontend Magic</h3>
-                        <p class="font-medium dark:text-slate-400">Vue &amp; Nuxt.js wizardry that brings screens to life.</p>
+                        <p class="font-medium dark:text-slate-400">Vue, Nuxt & UI/UX craftsmanship combined — designing bold, intuitive interfaces that don’t just look good… they feel right.</p>
                     </div>
                     <!-- Power 2 -->
                     <div class="bg-white dark:bg-card-bg border-4 border-black p-6 rounded-2xl shadow-comic transition-transform hover:-translate-y-2 group">
@@ -136,55 +136,63 @@
                             <span class="material-symbols-outlined text-black text-4xl font-bold">database</span>
                         </div>
                         <h3 class="text-2xl font-black italic mb-2">Backend Mastery</h3>
-                        <p class="font-medium dark:text-slate-400">Precision-built with PHP (Laravel) &amp; C# (.NET).</p>
+                        <p class="font-medium dark:text-slate-400">Precision-engineered systems with PHP (Laravel) & C# (.NET) — clean architecture, secure logic, scalable foundations.</p>
                     </div>
                     <!-- Power 3 -->
                     <div class="bg-white dark:bg-card-bg border-4 border-black p-6 rounded-2xl shadow-comic transition-transform hover:-translate-y-2 group">
                         <div class="w-16 h-16 bg-purple-400 border-4 border-black rounded-xl mb-4 flex items-center justify-center transform -rotate-3 group-hover:rotate-0 transition-transform">
                             <span class="material-symbols-outlined text-black text-4xl font-bold">cloud</span>
                         </div>
-                        <h3 class="text-2xl font-black italic mb-2">Cloud Architect</h3>
-                        <p class="font-medium dark:text-slate-400">AWS &amp; Docker scaling that touches the atmosphere.</p>
+                        <h3 class="text-2xl font-black italic mb-2">Infrastructure & Cloud Commander</h3>
+                        <p class="font-medium dark:text-slate-400">Server management, Docker orchestration, AWS deployment, and production environments built for uptime, performance, and control.</p>
                     </div>
                     <!-- Power 4 -->
                     <div class="bg-white dark:bg-card-bg border-4 border-black p-6 rounded-2xl shadow-comic transition-transform hover:-translate-y-2 group">
                         <div class="w-16 h-16 bg-primary border-4 border-black rounded-xl mb-4 flex items-center justify-center transform rotate-3 group-hover:rotate-0 transition-transform">
-                            <span class="material-symbols-outlined text-white text-4xl font-bold">palette</span>
+                            <span class="material-symbols-outlined text-white text-4xl font-bold">vpn_lock_2</span>
                         </div>
-                        <h3 class="text-2xl font-black italic mb-2">UI/UX Design</h3>
-                        <p class="font-medium dark:text-slate-400">Bold &amp; Playful interfaces that pop off the page.</p>
+                        <h3 class="text-2xl font-black italic mb-2">Network & Systems Engineer</h3>
+                        <p class="font-medium dark:text-slate-400">LAN architecture, server-to-server communication, infrastructure planning, and resilient internal system design.</p>
                     </div>
-                    <!-- Power 1 -->
+                    <!-- Power 5 -->
                     <div class="bg-white dark:bg-card-bg border-4 border-black p-6 rounded-2xl shadow-comic transition-transform hover:-translate-y-2 group">
-                        <div class="w-16 h-16 bg-blue-400 border-4 border-black rounded-xl mb-4 flex items-center justify-center transform -rotate-6 group-hover:rotate-0 transition-transform">
-                            <span class="material-symbols-outlined text-black text-4xl font-bold">auto_fix_high</span>
+                        <div class="w-16 h-16 bg-sky-400 border-4 border-black rounded-xl mb-4 flex items-center justify-center transform -rotate-6 group-hover:rotate-0 transition-transform">
+                            <span class="material-symbols-outlined text-black text-4xl font-bold">api</span>
                         </div>
-                        <h3 class="text-2xl font-black italic mb-2">Frontend Magic</h3>
-                        <p class="font-medium dark:text-slate-400">Vue &amp; Nuxt.js wizardry that brings screens to life.</p>
+                        <h3 class="text-2xl font-black italic mb-2">API & Integration Specialist</h3>
+                        <p class="font-medium dark:text-slate-400">Seamless 3rd-party integrations, RESTful APIs, payment gateways, authentication systems — making platforms talk flawlessly.</p>
                     </div>
-                    <!-- Power 2 -->
+                    <!-- Power 6 -->
                     <div class="bg-white dark:bg-card-bg border-4 border-black p-6 rounded-2xl shadow-comic transition-transform hover:-translate-y-2 group">
-                        <div class="w-16 h-16 bg-green-400 border-4 border-black rounded-xl mb-4 flex items-center justify-center transform rotate-6 group-hover:rotate-0 transition-transform">
-                            <span class="material-symbols-outlined text-black text-4xl font-bold">database</span>
+                        <div class="w-16 h-16 bg-slate-400 border-4 border-black rounded-xl mb-4 flex items-center justify-center transform rotate-6 group-hover:rotate-0 transition-transform">
+                            <span class="material-symbols-outlined text-black text-4xl font-bold">desktop_windows</span>
                         </div>
-                        <h3 class="text-2xl font-black italic mb-2">Backend Mastery</h3>
-                        <p class="font-medium dark:text-slate-400">Precision-built with PHP (Laravel) &amp; C# (.NET).</p>
+                        <h3 class="text-2xl font-black italic mb-2">Desktop & Enterprise Application Developer</h3>
+                        <p class="font-medium dark:text-slate-400">Robust .NET desktop applications and enterprise tools built for stability, business workflows, and long-term use.</p>
                     </div>
-                    <!-- Power 3 -->
+                    <!-- Power 7 -->
                     <div class="bg-white dark:bg-card-bg border-4 border-black p-6 rounded-2xl shadow-comic transition-transform hover:-translate-y-2 group">
-                        <div class="w-16 h-16 bg-purple-400 border-4 border-black rounded-xl mb-4 flex items-center justify-center transform -rotate-3 group-hover:rotate-0 transition-transform">
-                            <span class="material-symbols-outlined text-black text-4xl font-bold">cloud</span>
+                        <div class="w-16 h-16 bg-rose-400 border-4 border-black rounded-xl mb-4 flex items-center justify-center transform -rotate-3 group-hover:rotate-0 transition-transform">
+                            <span class="material-symbols-outlined text-black text-4xl font-bold">stadia_controller</span>
                         </div>
-                        <h3 class="text-2xl font-black italic mb-2">Cloud Architect</h3>
-                        <p class="font-medium dark:text-slate-400">AWS &amp; Docker scaling that touches the atmosphere.</p>
+                        <h3 class="text-2xl font-black italic mb-2">Interactive & Game Systems Developer</h3>
+                        <p class="font-medium dark:text-slate-400">Unity-powered experiences, logic-driven gameplay mechanics, and immersive digital interaction design.</p>
                     </div>
-                    <!-- Power 4 -->
+                    <!-- Power 8 -->
                     <div class="bg-white dark:bg-card-bg border-4 border-black p-6 rounded-2xl shadow-comic transition-transform hover:-translate-y-2 group">
-                        <div class="w-16 h-16 bg-primary border-4 border-black rounded-xl mb-4 flex items-center justify-center transform rotate-3 group-hover:rotate-0 transition-transform">
-                            <span class="material-symbols-outlined text-white text-4xl font-bold">palette</span>
+                        <div class="w-16 h-16 bg-violet-400 border-4 border-black rounded-xl mb-4 flex items-center justify-center transform rotate-3 group-hover:rotate-0 transition-transform">
+                            <span class="material-symbols-outlined text-white text-4xl font-bold">headset_mic</span>
                         </div>
-                        <h3 class="text-2xl font-black italic mb-2">UI/UX Design</h3>
-                        <p class="font-medium dark:text-slate-400">Bold &amp; Playful interfaces that pop off the page.</p>
+                        <h3 class="text-2xl font-black italic mb-2">IT Operations & Support Strategist</h3>
+                        <p class="font-medium dark:text-slate-400">Hardware troubleshooting, deployment management, system diagnostics, and user support with precision and patience.</p>
+                    </div>
+                    <!-- Power 9 -->
+                    <div class="bg-white dark:bg-card-bg border-4 border-black p-6 rounded-2xl shadow-comic transition-transform hover:-translate-y-2 group">
+                        <div class="w-16 h-16 bg-amber-400 border-4 border-black rounded-xl mb-4 flex items-center justify-center transform rotate-3 group-hover:rotate-0 transition-transform">
+                            <span class="material-symbols-outlined text-white text-4xl font-bold">volunteer_activism</span>
+                        </div>
+                        <h3 class="text-2xl font-black italic mb-2">Collaborative Team Catalyst</h3>
+                        <p class="font-medium dark:text-slate-400">A dependable team player who mentors, communicates clearly, and elevates team performance through structured execution.</p>
                     </div>
                 </div>
             </section>
