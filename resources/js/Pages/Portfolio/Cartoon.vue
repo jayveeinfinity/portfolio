@@ -182,9 +182,9 @@
                         Building powerful full-stack solutions with clean code, scalable systems, and a touch of creative energy.
                     </p>
                     <div class="flex flex-wrap gap-4 mt-4">
-                        <button class="bg-primary text-white text-xl font-black border-4 border-black px-8 py-4 rounded-xl shadow-comic hover:shadow-comic-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all uppercase tracking-tight">
+                        <a class="bg-primary text-white text-xl font-black border-4 border-black px-8 py-4 rounded-xl shadow-comic hover:shadow-comic-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all uppercase tracking-tight" href="#projects">
                             See Projects
-                        </button>
+                        </a>
                         <button class="bg-white text-black text-xl font-black border-4 border-black px-8 py-4 rounded-xl shadow-comic hover:shadow-comic-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all uppercase tracking-tight">
                             Let's Chat
                         </button>
@@ -297,7 +297,7 @@
                     </span>
                     COMIC PANELS (PROJECTS)
                 </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                     <!-- Project 1 -->
                     <div class="bg-white dark:bg-card-bg border-4 border-black rounded-2xl overflow-hidden shadow-comic flex flex-col group">
                         <div class="relative overflow-hidden border-b-4 border-black">
@@ -408,7 +408,7 @@
                 </div>
             </section>
             <!-- Use Cases Section -->
-            <section class="mb-32 max-w-7xl mx-auto px-4 md:px-20" id="use-cases">
+            <section class="mb-32 max-w-7xl mx-auto px-4 md:px-0" id="use-cases">
                 <h2 class="text-4xl font-black italic uppercase mb-12 flex items-center gap-4">
                     <span class="bg-accent-yellow text-black p-2 border-2 border-black rounded transform -rotate-3">
                         <span class="material-symbols-outlined">menu_book</span>
