@@ -415,7 +415,7 @@
                     </span>
                     COMICS OF EXPERIENCE
                 </h2>
-                <div class="relative flex flex-row items-center lg:items-start gap-10">
+                <div class="relative flex flex-col lg:flex-row items-center lg:items-start gap-10">
                     <div class="relative w-full max-w-md">
                         <!-- Portrait Placeholder -->
                         <div class="border-4 border-black dark:border-white rounded-3xl overflow-hidden shadow-comic-red bg-card-bg transform -rotate-3">
