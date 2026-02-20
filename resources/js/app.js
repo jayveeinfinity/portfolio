@@ -30,8 +30,13 @@ createInertiaApp({
         return pages[`./Pages/${name}.vue`]
     },
     setup({ el, App, props, plugin }) {
-        createApp({ render: () => h(App, props) })
-            .use(plugin)
+        const app = createApp({ render: () => h(App, props) });
+
+        app.config.globalProperties.$asset = (path) => {
+            return `${window.location.origin}/${path}`
+        }
+        
+        app.use(plugin)
             .use(ZiggyVue)
             .component("Head", Head)
             .component("Link", Link)

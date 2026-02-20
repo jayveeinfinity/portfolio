@@ -2,14 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
+use App\Services\PortfolioLayoutDecider;
+
 class PortfolioController extends Controller
 {
     public function __construct(
-        protected EngineerController $engineerController
-    ) {}
+        protected EngineerController $engineerController,
+        protected TechCEOController $techCeoController
+    ) {
+        Inertia::setRootView('layouts/cartoon');
+    }
 
-    public function index()
+    public function index(PortfolioLayoutDecider $decider)
     {
-        return $this->engineerController->index();
+        $result = $decider->decide();
+
+        return Inertia::render($result['component'], [
+            'ruleId' => $result['rule'],
+            'layoutKey' => $result['layoutKey'],
+        ]);
     }
 }
