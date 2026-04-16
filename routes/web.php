@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PortfolioController;
 
 Route::get('/', [PortfolioController::class, 'index']);
+Route::post('/contact', [PortfolioController::class, 'contact'])->middleware('throttle:3,1');
 
 // Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
 //     Route::resource('portfolio-layouts', AdminPortfolioLayoutController::class);

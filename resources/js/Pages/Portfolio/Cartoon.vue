@@ -1,5 +1,6 @@
 <script setup>
     import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
+    import { useForm } from '@inertiajs/vue3'
     import { useSmoothAnchorScroll } from '@/Composables/useSmoothAnchorScroll';
     import SkillReactionNetwork from "@/Shared/Components/SkillReactionNetwork.vue";
     import SkillReactionIcons from "@/Shared/Components/SkillReactionIcons.vue";
@@ -59,6 +60,48 @@
         const nav = e.target.closest('nav')
         if (!nav) close()
     }
+
+    const contactForm = useForm({
+        alias: '',
+        email: '',
+        mission: '',
+        company_website: '' // Honeypot field
+    });
+
+    const submitStatus = ref(null);
+
+    const submitContact = () => {
+        contactForm.post('/contact', {
+            preserveScroll: true,
+            onSuccess: () => {
+                submitStatus.value = 'success';
+                contactForm.reset();
+                setTimeout(() => {
+                    submitStatus.value = null;
+                }, 5000);
+            },
+            onError: () => {
+                submitStatus.value = 'error';
+            }
+        });
+    };
+
+    const sharePortfolio = async () => {
+        try {
+            if (navigator.share) {
+                await navigator.share({
+                    title: 'Jayvee Infinity - Full-Stack Software Hero',
+                    text: 'Check out this awesome portfolio!',
+                    url: window.location.href,
+                });
+            } else {
+                await navigator.clipboard.writeText(window.location.href);
+                alert('Link copied to clipboard!');
+            }
+        } catch (err) {
+            console.error('Error sharing:', err);
+        }
+    };
 
     onMounted(() => {
         if (window.location.hash) {
@@ -123,11 +166,12 @@
                     <a class="hover:text-primary transition-colors" href="#superpowers">Powers</a>
                     <a class="hover:text-primary transition-colors" href="#stats">Intel</a>
                     <a class="hover:text-primary transition-colors" href="#skills">Skill Reactor</a>
-                    <button
+                    <a
+                        href="#contact"
                         class="bg-primary text-white border-3 border-black px-5 lg:px-6 py-2 rounded-lg shadow-comic hover:shadow-comic-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
                     >
                         HIRE ME!
-                    </button>
+                    </a>
                 </div>
 
                 <!-- Mobile button -->
@@ -161,9 +205,9 @@
                     <a class="hover:text-primary transition-colors" href="#stats" @click="close()">Intel</a>
                     <a class="hover:text-primary transition-colors" href="#skills" @click="close()">Skill Reactor</a>
 
-                    <button class="mt-2 bg-primary text-white border-3 border-black px-6 py-2 rounded-lg shadow-comic">
+                    <a href="#contact" @click="close()" class="mt-2 text-center bg-primary text-white border-3 border-black px-6 py-2 rounded-lg shadow-comic inline-block w-full">
                         HIRE ME!
-                    </button>
+                    </a>
                     </div>
                 </div>
             </transition>
@@ -185,9 +229,9 @@
                         <a class="bg-primary text-white text-xl font-black border-4 border-black px-8 py-4 rounded-xl shadow-comic hover:shadow-comic-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all uppercase tracking-tight" href="#projects">
                             See Projects
                         </a>
-                        <button class="bg-white text-black text-xl font-black border-4 border-black px-8 py-4 rounded-xl shadow-comic hover:shadow-comic-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all uppercase tracking-tight">
+                        <a href="#contact" class="bg-white text-center text-black text-xl font-black border-4 border-black px-8 py-4 rounded-xl shadow-comic hover:shadow-comic-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all uppercase tracking-tight">
                             Let's Chat
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div class="w-full lg:w-1/2 relative">
@@ -470,21 +514,54 @@
                         </div>
                     </div>
                     <div class="w-full lg:w-1/2 p-12">
-                        <form class="flex flex-col gap-6">
+                        <form class="flex flex-col gap-6" @submit.prevent="submitContact">
+                            <!-- Honeypot field -->
+                            <div class="hidden" aria-hidden="true">
+                                <input v-model="contactForm.company_website" type="text" name="company_website" tabindex="-1" autocomplete="off">
+                            </div>
+
                             <div class="flex flex-col gap-2">
                                 <label class="font-black uppercase italic text-sm">Your Alias</label>
-                                <input class="bg-slate-100 dark:bg-slate-800 border-4 border-black rounded-xl p-4 font-bold focus:ring-0 focus:border-primary transition-colors" placeholder="Mr. Bean" type="text"/>
+                                <input v-model="contactForm.alias" :disabled="contactForm.processing" required class="bg-slate-100 dark:bg-slate-800 border-4 border-black rounded-xl p-4 font-bold focus:ring-0 focus:border-primary transition-colors disabled:opacity-50" placeholder="Mr. Bean" type="text"/>
+                                <span v-if="contactForm.errors.alias" class="text-red-600 font-bold text-xs italic">{{ contactForm.errors.alias }}</span>
                             </div>
                             <div class="flex flex-col gap-2">
                                 <label class="font-black uppercase italic text-sm">Communication Frequency</label>
-                                <input class="bg-slate-100 dark:bg-slate-800 border-4 border-black rounded-xl p-4 font-bold focus:ring-0 focus:border-primary transition-colors" placeholder="name@domain.com" type="email"/>
+                                <input v-model="contactForm.email" :disabled="contactForm.processing" required class="bg-slate-100 dark:bg-slate-800 border-4 border-black rounded-xl p-4 font-bold focus:ring-0 focus:border-primary transition-colors disabled:opacity-50" placeholder="name@domain.com" type="email"/>
+                                <span v-if="contactForm.errors.email" class="text-red-600 font-bold text-xs italic">{{ contactForm.errors.email }}</span>
                             </div>
                             <div class="flex flex-col gap-2">
                                 <label class="font-black uppercase italic text-sm">The Mission</label>
-                                <textarea class="bg-slate-100 dark:bg-slate-800 border-4 border-black rounded-xl p-4 font-bold focus:ring-0 focus:border-primary transition-colors" placeholder="Tell me about your project..." rows="4"></textarea>
+                                <textarea v-model="contactForm.mission" :disabled="contactForm.processing" required class="bg-slate-100 dark:bg-slate-800 border-4 border-black rounded-xl p-4 font-bold focus:ring-0 focus:border-primary transition-colors disabled:opacity-50" placeholder="Tell me about your project..." rows="4"></textarea>
+                                <span v-if="contactForm.errors.mission" class="text-red-600 font-bold text-xs italic">{{ contactForm.errors.mission }}</span>
                             </div>
-                            <button class="bg-primary text-white text-2xl font-black italic border-4 border-black p-4 rounded-xl shadow-comic hover:shadow-comic-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all uppercase mt-4" type="submit">
-                                SEND IT!
+
+                            <transition
+                                enter-active-class="transition duration-300 ease-out"
+                                enter-from-class="opacity-0 translate-y-2"
+                                enter-to-class="opacity-100 translate-y-0"
+                            >
+                                <div v-if="submitStatus === 'success'" class="bg-green-100 border-2 border-green-600 text-green-800 p-3 rounded-xl font-bold flex items-center gap-2">
+                                    <span class="material-symbols-outlined">check_circle</span>
+                                    Signal sent! I'll be in touch soon.
+                                </div>
+                            </transition>
+
+                            <button
+                                :disabled="contactForm.processing"
+                                class="bg-primary text-white text-2xl font-black italic border-4 border-black p-4 rounded-xl shadow-comic hover:shadow-comic-hover hover:translate-x-[4px] hover:translate-y-[4px] transition-all uppercase mt-4 flex items-center justify-center gap-3 disabled:opacity-75 disabled:cursor-not-allowed"
+                                type="submit"
+                            >
+                                <template v-if="contactForm.processing">
+                                    <span class="animate-spin material-symbols-outlined">sync</span>
+                                    TRANSMITTING...
+                                </template>
+                                <template v-else-if="submitStatus === 'success'">
+                                    SUCCESS!
+                                </template>
+                                <template v-else>
+                                    SEND IT!
+                                </template>
                             </button>
                         </form>
                     </div>
@@ -516,13 +593,13 @@
                 </div>
                 <p class="text-slate-500 font-bold uppercase text-xs tracking-widest">Designed with high-octane energy &copy; 2026</p>
                 <div class="flex gap-6">
-                    <a class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors border-2 border-white/10" href="#">
+                    <button class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors border-2 border-white/10 cursor-pointer" @click="sharePortfolio" title="Share Portfolio">
                         <span class="material-symbols-outlined text-white">share</span>
-                    </a>
-                    <a class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors border-2 border-white/10" href="#">
+                    </button>
+                    <a class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors border-2 border-white/10" href="https://github.com/jayveeinfinity" target="_blank" title="GitHub">
                         <span class="material-symbols-outlined text-white">code</span>
                     </a>
-                    <a class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors border-2 border-white/10" href="#">
+                    <a class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-primary transition-colors border-2 border-white/10" href="#contact" title="Rate / Contact">
                         <span class="material-symbols-outlined text-white">star</span>
                     </a>
                 </div>
