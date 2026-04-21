@@ -42,7 +42,7 @@ class PortfolioController extends Controller
             'mission' => 'required|string|max:5000',
         ]);
 
-        Mail::to('johnvincent.bonza@gmail.com')
+        Mail::to(config('mail.from.address'))
             ->send(new PortfolioContactMail(
                 alias: $validated['alias'],
                 email: $validated['email'],
